@@ -6,6 +6,9 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+// Require the main Sass manifest file
+require('./assets/scss/main.scss')
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
