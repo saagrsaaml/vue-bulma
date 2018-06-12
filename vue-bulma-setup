@@ -1,0 +1,59 @@
+1.sudo apt-get update && sudo apt-get install yarn
+2.sudo apt-get install nodejs
+3.sudo apt-get install npm
+4.npm install -g vue-cli
+You can now use the Vue CLI to scaffold projects. There are a number of templates available, but this article focuses on Webpack.
+To scaffold a Vue project with the Webpack template:
+5.vue init webpack new-project
+6.yarn install
+7.yarn add bulma
+8.Connect Up Bulma
+
+Add a suitable SASS manifest file that you’ll use to import all your SASS modules:
+
+# From project root:
+touch src/assets/sass/main.scss
+
+Open this file and import the main Bulma Sass file:
+
+// src/assets/sass/main.scss
+@import '~bulma/bulma'
+
+Note that the tilde symbol refers Webpack/sass-loader to the node_modules directory.
+
+You then need to reference this in Webpack’s main entry point, src/main.js:
+
+// src/main.js
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+
+// Require the main Sass manifest file
+require('./assets/sass/main.scss');
+
+Vue.config.productionTip = false;
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: { App },
+});
+
+9.Bulma Sass - Additional Dependencies
+
+Note that to compile Sass, Webpack needs the node-sass node module and the Webpack sass-loader module.
+
+Add these to your project dependencies:
+
+yarn add node-sass sass-loader
+
+You can now run yarn dev to build your development server.
+
+
+Resources:
+https://dev-notes.eu/2017/07/setup-new-vue-webpack-project-with-bulma/
+https://www.safaribooksonline.com/library/view/creating-interfaces-with/9781939902498/ch12.html
+https://medium.com/wdstack/vue-js-project-setup-2b39fcc8867d
+https://medium.com/tldr-tech/vue-js-2-vuex-router-yarn-basic-configuration-version-2-7b9c489d43b3
